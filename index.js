@@ -3,12 +3,14 @@ for (var i=0; i<buttonCount;i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var buttonElement=this.innerHTML;
         makeSound(buttonElement);
+        buttonAnimation(buttonElement);
 
     });
 }
 
 document.addEventListener("keypress",function (event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 
 function makeSound(buttonElement){
@@ -47,4 +49,12 @@ function makeSound(buttonElement){
         default: alert("The key you pressed now is Invalid. Please check!")
         break;
         };
+}
+
+function buttonAnimation(value){
+    var inputButton=document.querySelector("."+value);
+    inputButton.classList.add("pressed");
+    setTimeout(function(){
+        inputButton.classList.remove("pressed");
+    },100);
 }
